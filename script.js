@@ -24,28 +24,53 @@ console.log(currentDay);
 
 var compareTime = moment().hour();
 console.log(compareTime);
-var hours = document.querySelectorAll("#hr-9", "#hr-10", "#hr-11", "#hr-12", "#hr-13", "#hr-14", "#hr-15", "#hr-16" "#hr-17");
+var hours = document.querySelectorAll("#hr-9", "#hr-10", "#hr-11", "#hr-12", "#hr-13", "#hr-14", "#hr-15", "#hr-16", "#hr-17");
+var timeBlock = $(".time-block");
 var inputEl = document.querySelector(".description");
 //look into .each
 
-hours.forEach(compareFunction);
+timeBlock.each(function () {
 
-function compareFunction(hours) {
-    //look for hour
-    //compare hour with compareTime
-    //depending on result, depends on class being set
+    //pull the ID and get just the number
+    var timeBlockHour = parseInt($(this).attr('id').split('-')[1]);
+    console.log(timeBlockHour);
 
-    if (hours < compareTime) {
-        inputEl.classList.add("past");
-        inputEl.classList.remove("present", "future");
+    if (timeBlockHour < compareTime) {
         console.log("past");
+        inputEl.classList.add("past");
+        //inputEl.classList.remove("present", "future");
     }
-    else if (hours === compareTime) {
-        inputEl.classList.add("present");
+    else if (timeBlockHour > compareTime) {
+        //inputEl.classList.remove("present", "past");
+        //inputEl.classList.add("future");
+        $(this).removeClass('past');
+        $(this).addClass('future')
+        console.log('future')
     } else {
-        inputEl.classList.add("future");
-        console.log("future");
+        inputEl.classList.remove("future", "past");
+        inputEl.classList.add("present");
+        console.log('present')
     }
 
+})
 
-}
+// function compareFunction(hours) {
+//     //look for hour
+//     //compare hour with compareTime
+//     //depending on result, depends on class being set
+//     console.log(hours);
+
+//     }
+
+
+// }
+$(".saveBtn").click(function () {
+    //action goes here
+})
+
+$(".saveBtn").on("click", function () {
+    //action goes here
+})
+
+
+//render saved items
