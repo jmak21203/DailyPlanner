@@ -24,10 +24,28 @@ console.log(currentDay);
 
 var compareTime = moment().hour();
 console.log(compareTime);
+var hours = document.querySelectorAll("#hr-9", "#hr-10", "#hr-11", "#hr-12", "#hr-13", "#hr-14", "#hr-15", "#hr-16" "#hr-17");
+var inputEl = document.querySelector(".description");
 //look into .each
-function forEach() {
-    //look for hour
 
+hours.forEach(compareFunction);
+
+function compareFunction(hours) {
+    //look for hour
     //compare hour with compareTime
     //depending on result, depends on class being set
+
+    if (hours < compareTime) {
+        inputEl.classList.add("past");
+        inputEl.classList.remove("present", "future");
+        console.log("past");
+    }
+    else if (hours === compareTime) {
+        inputEl.classList.add("present");
+    } else {
+        inputEl.classList.add("future");
+        console.log("future");
+    }
+
+
 }
