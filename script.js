@@ -27,6 +27,7 @@ console.log(compareTime);
 var hours = document.querySelectorAll("#hr-9", "#hr-10", "#hr-11", "#hr-12", "#hr-13", "#hr-14", "#hr-15", "#hr-16", "#hr-17");
 var timeBlock = $(".time-block");
 var inputEl = document.querySelector(".description");
+var textContent = $(".row textarea");
 //look into .each
 
 timeBlock.each(function () {
@@ -36,8 +37,10 @@ timeBlock.each(function () {
     console.log(timeBlockHour);
 
     if (timeBlockHour < compareTime) {
+        $(this).removeClass('future', "present");
+        $(this).addClass('past')
         console.log("past");
-        inputEl.classList.add("past");
+
         //inputEl.classList.remove("present", "future");
     }
     else if (timeBlockHour > compareTime) {
@@ -47,8 +50,8 @@ timeBlock.each(function () {
         $(this).addClass('future')
         console.log('future')
     } else {
-        inputEl.classList.remove("future", "past");
-        inputEl.classList.add("present");
+        $(this).removeClass('past', "future");
+        $(this).addClass('present')
         console.log('present')
     }
 
@@ -64,13 +67,33 @@ timeBlock.each(function () {
 
 
 // }
-$(".saveBtn").click(function () {
-    //action goes here
-})
-
 $(".saveBtn").on("click", function () {
-    //action goes here
+
+
+    let hourBlock = $(this).attr("id");
+    let value = $(this).prev().children("textarea").val();
+
+
+
+
+    console.log(hourBlock);
+    console.log(value);
+    localStorage.setItem(hourBlock, value);
+
+});
+
+
+
+// display event after refresh on page 
+
+
+$(textContent).each(function () {
+
+    var hour = $(this).attr("id");
+
+    var description = localStorage.getItem(hour);
+    $(this).val(description);
+
+
 })
 
-
-//render saved items
