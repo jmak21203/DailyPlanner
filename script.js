@@ -70,8 +70,8 @@ timeBlock.each(function () {
 $(".saveBtn").on("click", function () {
 
 
-    let hourBlock = $(this).attr("id");
-    let value = $(this).prev().children("textarea").val();
+    let hourBlock = $(this).parent().attr("id");
+    let value = $(this).siblings('.description').val();
 
 
 
@@ -89,7 +89,7 @@ $(".saveBtn").on("click", function () {
 
 $(textContent).each(function () {
 
-    var hour = $(this).attr("id");
+    var hour = $(this).parent().attr("id");
 
     var description = localStorage.getItem(hour);
     $(this).val(description);
