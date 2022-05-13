@@ -18,9 +18,6 @@ var currentDay = moment().format('MMMM Do YYYY, h:mm:ss a');
 $("#currentDay").text(currentDay);
 console.log(currentDay);
 
-//make business hour time blocks
-
-//timeblack is color coded to indicate past,present, future
 
 var compareTime = moment().hour();
 console.log(compareTime);
@@ -28,8 +25,8 @@ var hours = document.querySelectorAll("#hr-9", "#hr-10", "#hr-11", "#hr-12", "#h
 var timeBlock = $(".time-block");
 var inputEl = document.querySelector(".description");
 var textContent = $(".row textarea");
-//look into .each
 
+//function to color code sections compared to current time
 timeBlock.each(function () {
 
     //pull the ID and get just the number
@@ -41,11 +38,8 @@ timeBlock.each(function () {
         $(this).addClass('past')
         console.log("past");
 
-        //inputEl.classList.remove("present", "future");
     }
     else if (timeBlockHour > compareTime) {
-        //inputEl.classList.remove("present", "past");
-        //inputEl.classList.add("future");
         $(this).removeClass('past');
         $(this).addClass('future')
         console.log('future')
@@ -57,16 +51,9 @@ timeBlock.each(function () {
 
 })
 
-// function compareFunction(hours) {
-//     //look for hour
-//     //compare hour with compareTime
-//     //depending on result, depends on class being set
-//     console.log(hours);
-
-//     }
 
 
-// }
+// save user input to local storage
 $(".saveBtn").on("click", function () {
 
 
